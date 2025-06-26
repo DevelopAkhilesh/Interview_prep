@@ -58,7 +58,7 @@ export async function signIn(params:SignInParams) {
         }
         await setSessionCookie(idToken);
         
-    } catch (error) {
+    } catch (error:any) {
         console.log(error)
         return {
             success:false,
@@ -72,7 +72,7 @@ export async function setSessionCookie(idToken:string) {
     const sessionCookie = await auth.createSessionCookie(idToken,{
         expiresIn:ONE_WEEK ,
 
-    })
+    });
 
     cookieStore.set('session',sessionCookie,{
         maxAge: ONE_WEEK ,
@@ -81,7 +81,7 @@ export async function setSessionCookie(idToken:string) {
         path:'/',
         sameSite:"lax"
 
-    })
+    });
 }
 
 export async function getCurrentUser():Promise<User| null> {
@@ -111,5 +111,5 @@ export async function getCurrentUser():Promise<User| null> {
 
 export async function isAuthenticated(){
     const user = await getCurrentUser();
-    return !!user
+    return !!user;
 }
