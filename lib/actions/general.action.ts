@@ -121,7 +121,7 @@ export async function getInterviewsByUserId(userId:string):Promise<Interview[]|n
         const querySnapshot = await db
           .collection("feedback")
           .where("interviewId", "==", interviewId)
-          .where("userId", "==", userId)
+          // .where("userId", "==", userId)
           .limit(1)
           .get();
       
